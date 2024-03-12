@@ -23,7 +23,28 @@ Come back to this once you've used `kubectl` a little and you're curious as to w
 
 ## Setup
 
+Ensure you have Docker installed.
+
 The exercises in this repo require `kubectl` and `kind`.
 Optionally `krew` can be used to manage `kubectl` plugins.
 
 Install these tools from official sources, or you can use the Nix flake in the root of this repo.
+
+Ensure Docker is running, then run:
+
+```
+$ kind create cluster --config setup/kind-config.yaml
+<... lots of output ...>
+$ kubectl config set-context kind-kind
+Context "kind-kind" modified.
+```
+
+You should now be able to verify that everything is working with
+
+```
+$kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:64347
+CoreDNS is running at https://127.0.0.1:64347/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+```
